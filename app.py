@@ -295,4 +295,3 @@ if uploaded_file is not None:
     st.write("Categorical Columns:", list(categorical_cols))
     st.write("Datatime Columns:", list(datetime_cols))
 
-    
