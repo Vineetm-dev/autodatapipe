@@ -1,6 +1,33 @@
-🚀 AutoDataPipe – AI Dataset Analysis Engine
-AutoDataPipe is an intelligent data analysis tool that automatically understands any dataset, analyzes its structure, and generates insights with minimal user input.
-Built using Python, Pandas, Streamlit, and Plotly, the tool helps users explore datasets quickly without manually writing analysis code.
+# AutoDataPipe 🚀  
+AI-Powered Data Pipeline & Analysis Tool
+
+## 🔍 Problem Statement
+Handling raw datasets manually is time-consuming and error-prone.  
+This project automates data cleaning, transformation, and analysis.
+
+## ⚙️ What I Built
+- Data ingestion pipeline (CSV input)
+- Automated data cleaning & preprocessing
+- Feature detection (numeric, categorical, datetime)
+- Missing value handling
+- Interactive dashboard using Streamlit
+
+## 🧱 Tech Stack
+- Python (Pandas, NumPy)
+- Streamlit
+- PyArrow
+- Plotly
+
+## 📊 Key Data Engineering Concepts Used
+- ETL Pipeline (Extract → Transform → Load)
+- Data Cleaning & Validation
+- Schema Detection
+- Data Type Handling
+
+## 🚀 How to Run
+```bash
+pip install -r requirements.txt
+streamlit run app.py
 
 📊 Features
 🔍 Automatic Dataset Detection
