@@ -1,9 +1,65 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import logging
+from openai import OpenAI
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+client = OpenAI()
+
+logging.basicConfig(level=logging.INFO)
 st.set_page_config(page_title="AutoDataPipe", page_icon="📊",  layout="wide")
 
 # Dataset Intelligence Function
+@st.cache_data
+def generate_ai_insights(df):
+    try:
+        Sample_data = df.head(20).to_csv(index=False)
+        prompt = f"""you are a senior data analyst. Analyze this dataset and provide:
+        - What the dataset represents
+        - Key trends
+        - Interesting insights
+        Dataset: {Sample_data}"""
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "user", "content": prompt}
+            ]
+        )
+        return response.choices[0].message.content
+    except Exception:
+        return "⚠️ AI insights unavailable (quota limit reached). Please try again later! ⚠️"
+
+def ask_ai_about_data(df, question):
+    try:
+        sample_data = df.head(50).to_csv(index=False)
+        prompt = f"""you are a data analyst. Dataset: {sample_data}. Question: {question} Answer clearly using the dataset."""
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "user", "content": prompt}
+            ]
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        return f"Error asking AI about data: {str(e)}"
+
+def load_data(file):
+    return pd.read_csv(file)
+
+def clean_data(df):
+    try:
+        df = df.drop_duplicates()
+        df = df.dropna(how="all")
+        return df
+    except Exception as e:
+        st.error(f"Error during cleaning: {e}")
+        return df
+def process_data(df):
+
+    return df
 
 def dataset_intelligence(df):
     numeric_columns = df.select_dtypes(include=["int64","float64"]).columns.tolist()
@@ -64,7 +120,21 @@ with col2:
     uploaded_file = st.file_uploader("Upload your CSV dataset", type=["CSV"])
 
 if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
+    df = load_data(uploaded_file)
+    logging.info("Dataset loaded successfully")
+    df = clean_data(df)
+    logging.info("Dataset cleaned successfully")
+    df = process_data(df)
+    logging.info("Dataset processed successfully")
+    st.sidebar.subheader("Data Processing ⚙️")
+
+    if st.sidebar.button("Clean Dataset"):
+        df = clean_data(df)
+        st.sidebar.success("Dataset cleaned successfully ✅")
+
+    csv = df.to_csv(index=False).encode('utf-8')
+    st.sidebar.download_button(label="Download Processed Data 🗃️", data=csv, file_name="Processed_data.csv", mime="text/csv")
+
     intelligence = dataset_intelligence(df)
     st.sidebar.title("Analysis Controls")
     analysis_mode = st.sidebar.selectbox("Choose Analysis Mode",[
@@ -149,11 +219,16 @@ if uploaded_file is not None:
 
             # Country Selector
             st.subheader("Select Country 🌍")
-            unique_countries = sorted(df_sorted["country"].unique())
+            country_column = detect_country_column(df_sorted)
+            if country_column:
+                unique_countries = sorted(df_sorted[country_column].dropna().unique())
+            else:
+                st.warning("No country column detected")
+                unique_countries = []
             selected_countries = st.multiselect("Choose a country (max 2)", unique_countries, default=[unique_countries[0]])
 
             # Filter By Country
-            filtered_df = df_sorted[df_sorted["country"].isin(selected_countries)]
+            filtered_df = df_sorted[df_sorted[country_column].isin(selected_countries)]
             
             # metrics Selector
             st.subheader("Select metrics 📊")
@@ -225,48 +300,25 @@ if uploaded_file is not None:
         st.plotly_chart(fig)
     
     elif analysis_mode == "AI Insights":
-        st.subheader("AI Dataset Insights 🧠")
-        rows, cols = df.shape
-        st.write(f"Dataset contains **{rows} rows** and **{cols} columns**.")
-        numeric_cols = df.select_dtypes(include=["Int64","Float64"]).columns
-        categorical_cols = df.select_dtypes(include=["object"]).columns
 
-        st.write(f"Detected **{len(numeric_cols)} numeric features**.")
-        st.write(f"Detected **{len(categorical_cols)} categorical features**.")
+        st.subheader("AI Dataset Insights 🤖")
+        st.info("⚠️ AI insights use limited API quotas. Use wisely! ⚠️")
 
-        missing = df.isnull().sum()
-        missing_percent = (missing / len(df)) * 100
+        #Generate AI Insights
+        if st.button("Generate AI Insights"):
+            with st.spinner("Analyzing dataset"):
+                insights = generate_ai_insights(df)
+                st.write(insights)
+        st.success("AI Powered Insights Enabled 🚀")
 
-        high_missing = missing_percent[missing_percent > 30]
-
-        if len(high_missing) > 0:
-            st.write("⚠️ Columns with high missing values (>30):")
-            st.write(high_missing.sort_values(ascending=False))
-        else:
-            st.write("No major missing data issues detected.")
-        
-        time_cols = [col for col in df.columns if "year" in col.lower() or "date" in col.lower()]
-        
-        if len(time_cols) > 0 and len(numeric_cols) > 1:
-            time_col = time_cols[0]
-            metrics = [col for col in numeric_cols if col not in time_cols]
-            if len(metrics) > 0:
-                metric = metrics[0]
-                trend = df.groupby(time_col)[metric].mean()
-                start_val = trend.iloc[0]
-                end_val = trend.iloc[-1]
-                if start_val !=0 :
-                    growth = ((end_val - start_val) / start_val) * 100
-                    st.write(f"✅ **{metric} increased by approximately {growth: .2f} % from {trend.index.min()} to {trend.index.max()}**")
-
-        if len(categorical_cols) > 0 and len(numeric_cols) > 0:
-            cat = categorical_cols[0]
-            metric = numeric_cols[0]
-            top = df.groupby(cat)[metric].mean().sort_values(ascending=False).head(5)
-
-            st.write(f"🏆 Top categories based on **{metric}**.")
-            st.write(top)           
-
+        #Ask AI Questions about data
+        st.subheader("Ask Questions About Your Data ❓")
+        user_question = st.text_input("Ask anything about your dataset")
+        if st.button("Ask AI"):
+            if user_question:
+                with st.spinner("Thinking..."):
+                    answer = ask_ai_about_data(df, user_question)
+                    st.write(answer)
     
     st.subheader("Column Data Types 🧠")
     st.write(df.dtypes)
