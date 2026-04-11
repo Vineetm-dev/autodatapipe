@@ -1,5 +1,12 @@
 # AutoDataPipe 🚀  
-AI-Powered Data Pipeline & Analysis Tool
+AI-Powered Data Analysis & Pipeline Simuation Tool
+
+## 🚀 Live Project Highlights
+
+- Built an end-to-end data analysis system from raw CSV ingestion to visualization
+- Designed modular pipeline logic mimicking ETL workflows
+- Implemented automatic feature detection and intelligent chart selection
+- Generated automated data insights without manual intervention
 
 ## 🔍 Problem Statement
 Handling raw datasets manually is time-consuming and error-prone.  
@@ -19,7 +26,7 @@ This project automates data cleaning, transformation, and analysis.
 - Plotly
 
 ## 📊 Key Data Engineering Concepts Used
-- ETL Pipeline (Extract → Transform → Load)
+- ETL Pipeline (Simulated using Pandas)
 - Data Cleaning & Validation
 - Schema Detection
 - Data Type Handling
