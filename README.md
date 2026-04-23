@@ -2,6 +2,33 @@
 ### AI-Powered Data Analysis & Smart ETL Pipeline Tool
 ---
 
+## 📸 App Screenshots
+### 🌟 Concept / Future UI
+<p align="center">
+  <img src="./assets/future_development_preview.png" width="900"/>
+</p>
+
+### 🎨 Actual app Dashboard UI
+<p align="center">
+  <img src="./assets/preview1.png" width="800"/>
+</p>
+
+### 📊 Data Visualization
+<p align="center">
+  <img src="./assets/preview3.png" width="800"/>
+</p>
+
+### 🤖 AI Insights
+<p align="center">
+  <img src="./assets/preview2.png" width="800"/>
+</p>
+
+### 🧠 Advanced Analytics
+<p align="center">
+  <img src="./assets/preview4.png" width="800"/>
+</p>
+
+
 ## 🌟 Overview
 AutoDataPipe is an intelligent data analysis platform that automates the entire pipeline — from raw dataset ingestion to visualization and AI-driven insights.
 
