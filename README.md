@@ -5,7 +5,7 @@
 ## 📸 App Screenshots
 ### 🌟 Concept / Future UI
 <p align="center">
-  <img src="./assets/future_development_preview.png" width="900"/>
+  <img src="./assets/future_development_preview.jpeg" width="900"/>
 </p>
 
 ### 🎨 Actual app Dashboard UI
