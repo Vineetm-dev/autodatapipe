@@ -49,13 +49,15 @@ AutoDataPipe eliminates this by enabling **non-technical users to explore data u
 ## 📸 Current App (Latest)
 
 <p align="center">
-  <img scr="assets/login_page.png" width="25%"/>
-  <img src="assets/dashboard.png" width="25%" />
-  <img src="assets/ai_chat.png" width="25%" />
-  <img src="assets/after_login_main.png" width="25%" />
-  <img src="assets/insights_and_summary.png" width="25%" />
+  <img src="assets/dashboard.png" width="250"/>
+  <img src="assets/after_login_main.png" width="250"/>
+  <img src="assets/ai_chat.png" width="250"/>
 </p>
 
+<p align="center">
+  <img src="assets/insights_and_summary.png" width="250"/>
+  <img src="assets/login_page.png" width="250"/>
+</p>
 
 ## 🎨 Future UI (React Concept)
 
