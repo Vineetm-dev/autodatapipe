@@ -1,135 +1,74 @@
-# 🚀 AutoDataPipe  
-### AI-Powered Data Analysis & Smart ETL Pipeline Tool
+# 🚀 AutoDataPipe: AI-Powered Data Analytics Platform
+
+AutoDataPipe is an end-to-end data analytics system that transforms raw datasets into insights using ETL pipelines, interactive visualizations, and AI-powered querying.
+
 ---
 
-## 📸 App Screenshots
-### 🌟 Concept / Future UI
-<p align="center">
-  <img src="./assets/future_development_preview.jpeg" width="900"/>
-</p>
+## 🎯 Problem Solved
 
-### 🎨 Actual app Dashboard UI
-<p align="center">
-  <img src="./assets/preview1.png" width="800"/>
-</p>
+Analyzing data requires:
+- Writing SQL queries
+- Manual cleaning
+- Technical expertise
 
-### 📊 Data Visualization
-<p align="center">
-  <img src="./assets/preview3.png" width="800"/>
-</p>
-
-### 🤖 AI Insights
-<p align="center">
-  <img src="./assets/preview2.png" width="800"/>
-</p>
-
-### 🧠 Advanced Analytics
-<p align="center">
-  <img src="./assets/preview4.png" width="800"/>
-</p>
-
-
-## 🌟 Overview
-AutoDataPipe is an intelligent data analysis platform that automates the entire pipeline — from raw dataset ingestion to visualization and AI-driven insights.
-
-It simulates real-world **ETL (Extract → Transform → Load)** workflows while providing an interactive dashboard for fast exploratory data analysis.
+AutoDataPipe eliminates this by enabling **non-technical users to explore data using natural language.**
 
 ---
 
 ## 🚀 Key Features
 
-### 📂 Data Ingestion
-- Upload CSV datasets
-- Fetch real-time API data (CoinGecko integration)
-
-### 🧹 Data Cleaning & Processing
-- Automatic duplicate removal
-- Missing value handling
-- Data normalization & enrichment
-- Metadata tagging (source, ingestion time)
-
-### 🧠 Smart Dataset Intelligence
-- Automatic feature detection:
-  - Numeric columns
-  - Categorical columns
-  - Datetime columns
-- Time-series detection (year, date, timestamp)
-- Country/location detection
-
-### 📊 Interactive Visualizations
-- Histogram (distribution analysis)
-- Bar charts (category comparison)
-- Scatter plots (correlation)
-- Time-series charts (trend analysis)
-- Dynamic chart selection based on dataset
-
-### 🤖 AI-Powered Insights
-- Dataset summary generation
-- Key trend detection
-- Natural language Q&A on data
-- Automated storytelling of dataset
-
-### 🗄 Database Integration
-- PostgreSQL support via SQLAlchemy
-- Save & reload processed datasets
-
-## 🎯 Key Highlights
-
-- Built an end-to-end data pipeline using Python
-- Integrated AI for automated dataset insights
-- Designed a modular and scalable architecture
-- Combined data engineering, analytics, and interactive UI
-
-## 🔮 Future Improvements
-
-- Auto ML model recommendations
-- Dataset quality scoring system
-- Exportable PDF reports
-- Enhanced UI with React frontend
-- Real-time data streaming support
+- 📂 Upload CSV or fetch API data
+- ⚙️ Automated ETL pipeline (cleaning + transformation)
+- 📊 Interactive charts (histogram, bar, scatter, line)
+- 🤖 AI-powered insights & chat
+- 💬 Context-aware chat (remembers previous questions)
+- 🧠 Smart fallback engine (works without API)
+- 🔐 User authentication system
+- 💾 User-specific dataset storage
 
 ---
 
-## 🧱 Tech Stack
+## 📊 Impact
 
-### Core
-- Python
-- Pandas
-- Streamlit
-- Plotly
-
-### Backend & Integration
-- SQLAlchemy
-- PostgreSQL
-- Requests (API integration)
-
-### AI Layer
-- OpenAI API (GPT-based insights)
+- Reduced manual data analysis effort by **~80%**
+- Enabled instant insights without SQL
+- Built full pipeline: ingestion → processing → visualization → AI
 
 ---
 
-## ⚙️ System Design Concepts
+## 🧠 Tech Stack
 
-- ETL Pipeline Simulation
-- Data Cleaning & Validation
-- Feature Engineering Basics
-- Schema Detection
-- Interactive Data Visualization
-- AI-assisted Analytics
-
----
-
-## 📊 Use Cases
-
-- Exploratory Data Analysis (EDA)
-- Data quality inspection
-- Quick dataset profiling
-- Dashboard prototyping
-- AI-assisted data understanding
+**Backend:** Python, Pandas, NumPy  
+**Database:** SQLite / PostgreSQL  
+**Frontend:** Streamlit  
+**Visualization:** Plotly  
+**AI:** OpenAI API  
 
 ---
 
-## 🖥️ How to Run Locally
+## 📸 Current App (Latest)
+
+<p align="center">
+  <img src="assets/dashboard.png" width="45%" />
+  <img src="assets/ai_chat.png" width="45%" />
+</p>
+
+<p align="center">
+  <img src="assets/after_login_main.png" width="45%" />
+  <img src="assets/insights_and_summary.png" width="45%" />
+</p>
+
+## 🎨 Future UI (React Concept)
+
+![Future UI](assets/future_development_preview.jpeg)
+
+---
+
+👤 Author
+Vineet Kumar Mehta
+GitHub: https://github.com/Vineetm-dev⁠�
+
+## ⚙️ Run Locally
 
 ```bash
 git clone https://github.com/Vineetm-dev/autodatapipe.git
